@@ -1,0 +1,123 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 2em;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.navbar-nav .nav-link {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+    .navbar-nav .nav-link:hover {
+        color: orange;
+            /* Verander de kleur bij hover naar de gewenste kleur */
+    }
+
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.product {
+    flex: 0 0 calc(30% - 20px);
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-bottom: 20px;
+    font-size: 14px;
+    position: relative;
+}
+
+    .product:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .product img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 12px 12px 0 0;
+    }
+
+.product-details {
+    padding: 15px;
+    background-color: #fff;
+    text-align: center;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.description {
+    color: #333;
+    font-size: 14px;
+}
+
+.price {
+    font-weight: bold;
+    color: #ffaa00;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.add-to-cart {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    font-size: 14px;
+    width: 100%;
+}
+
+    .add-to-cart:hover {
+        background-color: #e69500;
+    }
+
+.cart {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 1em;
+}
+
+.cart-icon {
+    font-size: 24px;
+}
+
+.cart-count {
+    margin-left: 5px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em;
+    width: 100%;

@@ -1,0 +1,65 @@
+﻿@model PatatzaakOfficeel.Models.Order
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout - Customer"; 
+}
+
+<h1>Bestelling</h1>
+<h4>
+    Datum: @Model.DateTime
+    <br>
+    Bestelnummer: @Model.Id
+</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Product
+            </th>
+            <th>
+                Aantal
+            </th>
+            <th>
+                Prijs
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Orderitems)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                    
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+               
+            </tr>
+        }
+        <tr>
+            <td>
+                Totaal
+            </td>
+            @{
+                decimal TotalCost = 0;
+                foreach (var cart in Model.Orderitems)
+                {
+                    TotalCost += decimal.Parse(cart.Price.ToString()) * decimal.Parse(cart.Quantity.ToString());
+                }
+            }
+            <td>
+                @TotalCost
+            </td>
+
+        </tr>
+  
+    </tbody>
+</table>

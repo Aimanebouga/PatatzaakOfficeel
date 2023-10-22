@@ -1,0 +1,139 @@
+﻿@model IEnumerable<PatatzaakOfficeel.Models.Product>
+
+@{
+    ViewData["Title"] = "CustomerMenu";
+    Layout = "_Layout - Customer";
+    List<string> categoriesNames = new List<string>();
+    foreach (var product in Model)
+    {
+        if (!categoriesNames.Contains(product.Category.Name))
+        {
+            categoriesNames.Add(product.Category.Name);
+        }
+    }
+    ViewData["categoriesNames"] = categoriesNames;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/StylePatatzaak.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <title>Winkel</title>
+</head>
+<body>
+    <header>
+   
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <ul class="navbar-nav">
+                    @foreach (var Categoryname in ViewData["categoriesNames"] as List<string>)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="#@Categoryname">@Categoryname</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    @foreach (var Categoryname in ViewData["categoriesNames"] as List<string>)
+    {
+        <h3>
+            @Categoryname
+        </h3>
+        <div class="container" id="@Categoryname">
+
+            @foreach (var product in Model)
+            {
+                if (product.Category.Name == Categoryname)
+                {
+                    <div class="product">
+                        <img src="~/images/@product.ImageURL" class="product-image" />
+                        <h2>@product.Name</h2>
+                        <p class="description">@product.Description</p>
+                        <p class="price">@product.Price</p>
+                        @{
+                            int productId = product.Id;
+                        }
+                        <form asp-controller="Carts" asp-action="AddProductToCart" method="post">
+                            <input type="hidden" name="productId" value="@product.Id" />
+                            <button type="submit" class="btn btn-outline-dark">Voeg toe aan de winkelwagen <i class="fa-solid fa-plus"></i></button>
+                        </form>
+                    </div>
+                }
+            }
+        </div>
+        <br />
+    }
+
+    <footer>
+        <p>&copy; Patatzaak</p>
+    </footer>
+</body>
+</html>
+
+
+@* @model IEnumerable<PatatzaakOfficeel.Models.Product>
+
+@{
+    ViewData["Title"] = "CustomerMenu";
+    Layout = "_Layout - Customer";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/StylePatatzaak.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <title>Winkel</title>
+</head>
+<body>
+    <header>
+    </header>
+    @foreach (var Categoryname in ViewData["categoriesNames"] as List<string>)
+    {
+        <h3>
+            @Categoryname 
+        </h3>
+        <div class="container" id ="@Categoryname">
+
+        
+        @foreach (var product in Model)
+        {
+            if (product.Category.Name == Categoryname)
+            {
+                <div class="product">
+                    <img src="~/images/@product.ImageURL" class="product-image" />
+                    <h2>@product.Name</h2>
+                    <p class="description">@product.Description</p>
+                    <p class="price">@product.Price</p>
+                    @{
+                        int productId = product.Id;
+                    }
+                    <form asp-controller="Carts" asp-action="AddProductToCart" method="post">
+                        <input type="hidden" name="productId" value="@product.Id" />
+                        <button type="submit" class="btn btn-outline-dark">Voeg toe aan de winkelwagen <i class="fa-solid fa-plus"></i></button>
+                    </form>
+                </div>
+            }
+
+        }
+        </div>
+        <br />
+        
+    }
+    
+
+    <footer>
+        <p>&copy; Patatzaak</p>
+    </footer>
+</body>
+</html> *@
+
+
+

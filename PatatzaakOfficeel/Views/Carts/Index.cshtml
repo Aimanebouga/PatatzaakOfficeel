@@ -1,0 +1,67 @@
+﻿@model IEnumerable<PatatzaakOfficeel.Models.Cart>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout - Customer";
+}
+
+<h1>Winkelwagen</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Product
+            </th>
+            <th>
+                Prijs
+            </th>
+            <th>
+                Aantal
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+            </td>
+            <td>
+               
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+<tr> 
+    <td>
+        Totaal
+    </td>
+            @{
+                decimal TotalCost = 0;
+                foreach(var cart in Model)
+                {
+                    TotalCost += decimal.Parse(cart.Product.Price.ToString())*decimal.Parse(cart.Quantity.ToString());
+                }
+            }
+            <td>
+                @TotalCost
+            </td>
+            
+</tr>
+    <td>
+        <form asp-controller="Orders" asp-action="Create" method="post">
+            <button type="submit" class="btn btn-outline-dark">Order</button>
+        </form>
+    </td>
+    </tbody>
+</table>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<PatatzaakOfficeel.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout - Customer";
+}
+
+<h1>Bestellingen</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTime)
+            </th>
+           
+            <th>
+                Bestelnummer
+            </th>
+           
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTime)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
